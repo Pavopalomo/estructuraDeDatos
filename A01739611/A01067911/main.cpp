@@ -19,7 +19,7 @@ int intercambio(int arr[], int ls){
     }
     
     return count;
-}
+}//O(n^2)
 
 //Bubble Sort
 int bubbleSort(int arr[],int ls){
@@ -40,44 +40,9 @@ int bubbleSort(int arr[],int ls){
     }  
 
     return count;
-}
+}//O(n^2)
 
-//seleccionDirecta
-void seleccionDirecta(int arr[],int ls){
-    int aux = 0, count = 0;
-    int aux1 =0;
-    for(int i = 0; i<ls-1 ;i++){
-        aux=i;
-        for(int j=i+1; j < ls;j++){
-            if(arr[aux]>arr[j])
-            {
-                aux = j;
-            }
-            count++;
-        }
-        if(i!=aux){
-            aux1 = arr[i];
-            arr[i] = arr[aux];
-            arr[aux] =aux1;
-        }
-    }
-
-}
-
-//Insertion Sort
-void insertionSort(int arr[], int ls){
-    int aux = 0,j, count =0;
-    for(int i = 0; i<ls-1;i++){
-        aux=arr[i];
-        for(j=i; j > 0 && aux < arr[j-1];j--){
-            arr[j]=arr[j-1];
-        }
-        count++;
-        arr[j]=aux;
-    }
-
-}
-
+/*Ordenamientos Recursivos*/
 int merge(int arr[], int li, int ls){
     int liT=li, len=ls-li+1;
     int arrTemp[len];
@@ -116,13 +81,13 @@ int merge(int arr[], int li, int ls){
     
     
     return count;    
-}
+}//O(n)
 
 int ordenaMerge(int arr[], int li, int ls){
     if(li >= ls) return 0;
     return ordenaMerge(arr, li,(li+ls)/2) + ordenaMerge(arr, (li+ls)/2+1, ls) + merge(arr, li, ls);
     
-}
+}//O(n log n)
 
 int main(){
     int data=0, busq=0;
