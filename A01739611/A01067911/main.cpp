@@ -3,8 +3,8 @@
 using namespace std;
 /*Ordenamiento iterativos*/
 
-//Intercambio
-int intercambio(int arr[], int ls){
+//ordenaIntercambio
+int ordenaIntercambio(int arr[], int ls){
     int aux = 0, count = 0;
     for(int i = 0; i<ls;i++){
         for(int j=i+1; j <= ls;j++){
@@ -22,7 +22,7 @@ int intercambio(int arr[], int ls){
 }//O(n^2)
 
 //Bubble Sort
-int bubbleSort(int arr[],int ls){
+int ordenaBurbuja(int arr[],int ls){
     int aux = 0, comp = 0, count =0;
     bool check = true;
     for(int i = 0; i<ls && check;i++){
@@ -99,8 +99,8 @@ int main(){
         arrMerge[i] = arrSwap[i];
     }
 
-    cout<<intercambio(arrBubble, data-1)<<" "
-        <<bubbleSort(arrSwap, data-1)<<" "
+    cout<<ordenaIntercambio(arrBubble, data-1)<<" "
+        <<ordenaBurbuja(arrSwap, data-1)<<" "
         <<ordenaMerge(arrMerge, 0, data-1)<<" "<<endl;
 
     return 0;
