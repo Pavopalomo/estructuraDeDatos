@@ -14,6 +14,11 @@ int main() {
   // cout << "Da el mes de fin en numero (diciembre = 12): ";
   cin >> mesfin;
 
+  if (mesinicio < 1 || mesfin < 1 || mesinicio > 12 || mesfin > 12 ||
+      mesinicio > mesfin) {
+    cerr << "Rango de meses inválido (1 <= inicio <= fin <= 12)\n";
+    return 1;
+  }
   ifstream file("bitacora.txt");
 
   if (!file.is_open()) {
@@ -24,25 +29,24 @@ int main() {
   vector<string> lineas;
   string linea;
 
-  // Leer todas las líneas del archivo
-  while (getline(file, linea)) {
-    // Para cada mes en el rango [mesinicio, mesfin]
-    for (int i = mesinicio - 1; i < mesfin; i++) {
-      if (linea.find(days[i]) != string::npos) {
-        lineas.push_back(linea);
-        break; // evitar duplicar si hay coincidencia múltiple
-      }
-    }
-  }
-
+  while (getline(file, linea))
+    lineas.push_back(linea);
   file.close();
 
-  // Ordenar las líneas (equivalente a sort en bash)
-  sort(lineas.begin(), lineas.end());
+  for (int i = mesinicio - 1; i <= mesfin - 1; ++i) {
+    vector<string> month_lines;
+    for (size_t j = 0; j < lineas.size(); j++) {
+      const string &l = lineas[j]; // aquí l es solo un alias a lineas[j]
+      if (l.find(days[i]) != string::npos) {
+        month_lines.push_back(l);
+      }
+    }
 
-  // Imprimir resultados
-  for (const auto &l : lineas) {
-    cout << l << "\n";
+    sort(month_lines.begin(), month_lines.end()); // sort por mes
+    for (size_t j = 0; j < month_lines.size(); j++) {
+      const string &l = month_lines[j]; // l es la línea j-ésima de month_lines
+      cout << l << '\n';
+    }
   }
 
   return 0;
