@@ -126,6 +126,18 @@ int main() {
     // aca chatgpt me dio esta linea igual checala porfa
     ordenaMerge(month_lines, 0, month_lines.size() - 1);
 
+    ofstream sorted("sorted.txt");//Crea el archivo llamado sorted.txt
+    if (!sorted){//Si no se crea el archivo
+      cerr << "Error al crear el archivo";
+      return 1;
+    }
+
+  for (const auto &l : bitOrd) {//escribe todo el documento ordenado
+      sorted << l<<endl;
+    }
+    sorted.close();
+
+
     for (size_t j = 0; j < month_lines.size(); j++) {
       const string &l = month_lines[j]; // l es la línea j-ésima de month_lines
       cout << l << '\n';
